@@ -11,6 +11,7 @@ type Vehicle struct {
 	Year      int       `json:"year"`
 	Plate     string    `json:"plate"`
 	UserID		uint      `json:"user_id"`
+	User			User      `gorm:"foreignKey:UserID"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }

@@ -16,7 +16,7 @@ const (
 	dbname   = "car-repair"
 )
 
-func InitDB() *gorm.DB {
+func Init() *gorm.DB {
 	dsn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
