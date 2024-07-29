@@ -1,7 +1,6 @@
 package seeder
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/jaswdr/faker"
@@ -23,6 +22,5 @@ func SeedVehicles(db *gorm.DB) {
 		}
 		db.Create(&vehicle)
 	}
-	fmt.Println("Vehicles Seeded")
 	log.Println("Vehicles Seeded")
 }

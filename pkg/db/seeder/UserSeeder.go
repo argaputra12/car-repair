@@ -1,7 +1,6 @@
 package seeder
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/jaswdr/faker"
@@ -18,11 +17,24 @@ func SeedUsers(db *gorm.DB) {
 			Name:     fake.Person().Name(),
 			Email:    fake.Internet().Email(),
 			Password: "password",
+			Role:     "user",
 			Phone:    fake.Phone().Number(),
 			Address:  fake.Address().Address(),
 		}
 		db.Create(&user)
 	}
-	fmt.Println("Users Seeded")
+
+	// Create Admin
+	admin := models.User{
+		Name:     "Admin",
+		Email:    "admin@admin.com",
+		Password: "password",
+		Role:     "admin",
+		Phone:    fake.Phone().Number(),
+		Address:  fake.Address().Address(),
+	}
+
+	db.Create(&admin)
+
 	log.Println("Users Seeded")
 }

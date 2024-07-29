@@ -1,7 +1,6 @@
 package seeder
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/argaputra12/car-repair/pkg/models"
@@ -21,6 +20,5 @@ func SeedItem(db *gorm.DB) {
 		}
 		db.Create(&item)
 	}
-	fmt.Println("Items Seeded")
 	log.Println("Items Seeded")
 }
