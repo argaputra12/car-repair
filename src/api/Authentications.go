@@ -61,9 +61,17 @@ func RegisterPost(w http.ResponseWriter, r *http.Request) {
 		Password: password,
 		Role:     "user",
 	}
+	// check if email already exists
+	existingUser := models.User{}
 
 	db := db.Init()
-	err := db.Create(&user).Error
+	err := db.Where("email = ?", email).First(&existingUser).Error
+	if err == nil {
+		utils.RespondWithError(w, http.StatusBadRequest, "Email already exists")
+		return
+	}
+	
+	err = db.Create(&user).Error
 
 	if err != nil {
 		utils.RespondWithError(w, http.StatusBadRequest, "Failed to create user")
